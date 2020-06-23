@@ -1,0 +1,59 @@
+Create database Biblio
+use Biblio
+
+
+
+Create table Acesso(CodUsuario int not null primary key identity(1,1),
+Nome varchar(50) not null,
+ Usuario varchar(50) not null,
+ Senha varchar(8) not null,
+ Funcao varchar(50) not null
+ )
+ insert into Acesso values('Pedro Pembele','Pedro','123456','Professor')
+  insert into Acesso values('António João','Antonio','54321','Aluno')
+ select * from Acesso
+
+
+Create Table Categoria(
+CodCat int not null primary key identity(1,1),
+Descricao varchar(100)
+)
+
+Insert into Categoria values('Sem categoria')
+Insert into Categoria values('Romance')
+Insert into Categoria values('Didatico')
+
+select * from categoria
+
+
+Create table Livro(
+CodLivro int not null primary key identity(1,1),
+Titulo varchar(100),
+Ano int,
+Editora varchar(100),
+Cod_Categoria int not null references Categoria(CodCat)
+)
+
+Insert into Livro values('Titanic','1993','EbookPro','2')
+Insert into Livro values('A Cabra Da Minha Mãe','2017','ProBooks','1')
+Insert into Livro values('Base De Dados','2000','Ispaj','3')
+
+select * from Livro
+
+
+
+Create table Autor(CodAutor int not null primary key identity(1,1),
+NmAutor varchar(100),
+Nacionalidade varchar(100)
+)
+insert into Autor values('Romeu da Cruz','Americana')
+insert into Autor values('Pedro Pembele','Angolana')
+
+Select * from Autor
+
+Create table AutorLivro(CodAutorlivro int not null primary key identity(1,1),
+Cod_Autor int not null foreign key references Autor(CodAutor),
+Cod_Livro int not null foreign key references Livro(CodLivro)
+)
+insert into AutorLivro values('1','1')
+select * from AutorLivro
